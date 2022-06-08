@@ -61,3 +61,6 @@ public class MyDB{
     public void setUSer(String root) {
     }
 
+    public void closeConnection() {
+    }
+
