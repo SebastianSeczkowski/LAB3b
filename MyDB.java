@@ -53,8 +53,11 @@ public class MyDB{
     public Connection getConnection() {
     if (conn == null)
         connect();
-    
+
     return conn;
 
 }
+
+    public void setUSer(String root) {
+    }
 
