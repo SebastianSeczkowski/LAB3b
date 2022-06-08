@@ -14,12 +14,12 @@ public class MyDB{
     private Connection conn = null;
     private Connection conn = null;
     private Statement statement = null;
-    
-    public MyDB(String serverName, String portNumber, String database);
+
+    public MyDB(String serverName, String portNumber, String database) {
         this.serverName = serverName;
         this.database = database;
         this.portNumber = portNumber;
-
+    }
     public ResultSet selectData(String selectStatement) {
         boolean statement;
         if ((conn != null) && (statement != null))
@@ -30,7 +30,7 @@ public class MyDB{
             }
         return null;
     }
-}
+
 
     public void setUser(String user) {
         this.user = user;
@@ -46,16 +46,16 @@ public class MyDB{
         connectionProps.put("password", password);
         connectionProps.put("serverTimezone","Europe/Warsaw");
 
-        String dbName;
         String host;
         String port;
+        String dbName;
         String jdbcString = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
         try {
             conn = DriverManager.getConnection(
                     jdbcString, connectionProps);
         }
         catch (SQLException e) {
-            System.out.println("Błąd podłączenia do bazy: ")+jdbcString);
+            System.out.println("Błąd podłączenia do bazy: "+jdbcString);
             System.out.println("Komunikat błędu: "+e.getMessage());
             conn = null;
         }
@@ -76,4 +76,3 @@ public class MyDB{
     public void closeConnection() {
     }
 
-    
