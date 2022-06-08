@@ -1,5 +1,4 @@
 package pl.lublin.wsei.java.cwiczenia.test;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
@@ -13,12 +12,25 @@ public class MyDB{
     private String portNumber;
     private String database;
     private Connection conn = null;
-
-    public MyDB(String serverName, String database, Number portNumber);
+    private Connection conn = null;
+    private Statement statement = null;
+    
+    public MyDB(String serverName, String portNumber, String database);
         this.serverName = serverName;
         this.database = database;
         this.portNumber = portNumber;
+
+    public ResultSet selectData(String selectStatement) {
+        boolean statement;
+        if ((conn != null) && (statement != null))
+            try {
+                return statement.executeQuery(selectStatement);
+            } catch (SQLException e) {
+                System.out.println("Błąd realizacji zapytania: " + selectStatement + ", " + e.getMessage());
+            }
+        return null;
     }
+}
 
     public void setUser(String user) {
         this.user = user;
@@ -64,3 +76,4 @@ public class MyDB{
     public void closeConnection() {
     }
 
+    
